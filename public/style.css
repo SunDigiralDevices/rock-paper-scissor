@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap');
+
+/* ==========================================
+   Reset & Variables
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', 'Segoe UI', sans-serif;
+}
+
+:root {
+    --bg-dark:       #1a1008;
+    --bg-card:       #2a1d0e;
+    --bg-surface:    #3a2b18;
+    --bg-hover:      #4a3820;
+    --accent:        #c8860a;
+    --accent-light:  #e8a830;
+    --accent-dim:    #7a5210;
+    --text-primary:  #f5e6c8;
+    --text-muted:    #9a7d58;
+    --text-dim:      #6a5038;
+    --dot-win:       #d4a843;
+    --dot-lose:      #7a3020;
+    --dot-empty:     #3a2b18;
+    --dot-border:    #5a4028;
+    --result-win-bg:   rgba(212, 168, 67, 0.12);
+    --result-win-c:    #d4a843;
+    --result-lose-bg:  rgba(139, 58, 42, 0.12);
+    --result-lose-c:   #d4603a;
+    --result-draw-bg:  rgba(106, 122, 90, 0.12);
+    --result-draw-c:   #9aaa7a;
+}
+
+body {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ==========================================
+   Heading
+   ========================================== */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+/* ==========================================
+   Cards
+   ========================================== */
+#lobby, #gameRoom {
+    background: var(--bg-card);
+    border: 1px solid var(--accent-dim);
+    border-radius: 12px;
+    padding: 28px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: inset 0 1px 0 rgba(200, 134, 10, 0.15);
+}
+
+/* ==========================================
+   Form Inputs
+   ========================================== */
+input[type="text"] {
+    width: 100%;
+    padding: 11px 16px;
+    background: var(--bg-dark);
+    border: 1px solid var(--accent-dim);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 14px;
+}
+input[type="text"]:focus {
+    border-color: var(--accent);
+}
+input::placeholder {
+    color: var(--text-dim);
+}
+
+/* ==========================================
+   Buttons (Lobby)
+   ========================================== */
+.btn-row {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Kanit', sans-serif;
+    border: none;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#lobby .btn-primary {
+    flex: 1;
+    padding: 11px;
+    background: var(--accent);
+    color: #1a1008;
+}
+#lobby .btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-1px);
+}
+
+#lobby .btn-ghost {
+    flex: 1;
+    padding: 11px;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+}
+#lobby .btn-ghost:hover {
+    background: var(--bg-hover);
+}
+
+/* ==========================================
+   Generated Room Area
+   ========================================== */
+#generatedRoomArea {
+    margin-top: 16px;
+    padding: 14px;
+    background: var(--bg-surface);
+    border-radius: 8px;
+    border: 1px solid var(--accent-dim);
+    text-align: center;
+}
+#generatedRoomArea p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+#generatedRoomCode {
+    color: var(--accent-light);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin-top: 4px;
+}
+
+/* ==========================================
+   Game Room — Header
+   ========================================== */
+#roomTitle {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+/* ==========================================
+   Scoreboard (Valorant dot style)
+   ========================================== */
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 16px;
+    background: var(--bg-dark);
+    border-radius: 10px;
+    border: 1px solid var(--bg-surface);
+}
+
+.player-score {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.player-label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.score-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-light);
+    line-height: 1;
+}
+
+.score-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 18px;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+/* Dots */
+.dots {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--dot-empty);
+    border: 1.5px solid var(--dot-border);
+    transition: background 0.3s, transform 0.2s;
+}
+.dot.win {
+    background: var(--dot-win);
+    border-color: var(--dot-win);
+    transform: scale(1.2);
+}
+.dot.lose {
+    background: var(--dot-lose);
+    border-color: var(--dot-lose);
+}
+
+/* ==========================================
+   Countdown Timer
+   ========================================== */
+.timer-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.timer-ring {
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+.timer-ring svg {
+    transform: rotate(-90deg);
+}
+.timer-ring circle.bg {
+    fill: none;
+    stroke: var(--bg-surface);
+    stroke-width: 5;
+}
+.timer-ring circle.prog {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 169.6;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.9s linear, stroke 0.4s;
+}
+.timer-num {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-light);
+}
+.timer-ring.urgent circle.prog {
+    stroke: #c0440a;
+}
+.timer-ring.urgent .timer-num {
+    color: #c0440a;
+}
+.timer-label {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   Action Buttons (Rock / Scissors / Paper)
+   ========================================== */
+#actionButtons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.choice-btn {
+    flex: 1;
+    padding: 14px 8px;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-dim);
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-family: 'Kanit', sans-serif;
+    cursor: pointer;
+    transition: background 0.18s, border-color 0.18s, transform 0.18s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.choice-btn .label {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+.choice-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+.choice-btn:active {
+    transform: scale(0.95);
+}
+.choice-btn.selected {
+    background: var(--accent-dim);
+    border-color: var(--accent-light);
+}
+.choice-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==========================================
+   Status & Result
+   ========================================== */
+#status {
+    display: inline-block;
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    border: 1px solid var(--accent-dim);
+    width: 100%;
+    text-align: center;
+}
+
+#roundResultText {
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-align: center;
+    min-height: 42px;
+    transition: all 0.3s;
+}
+#roundResultText.win {
+    background: var(--result-win-bg);
+    color: var(--result-win-c);
+    border: 1px solid rgba(212, 168, 67, 0.3);
+}
+#roundResultText.lose {
+    background: var(--result-lose-bg);
+    color: var(--result-lose-c);
+    border: 1px solid rgba(139, 58, 42, 0.3);
+}
+#roundResultText.draw {
+    background: var(--result-draw-bg);
+    color: var(--result-draw-c);
+    border: 1px solid rgba(106, 122, 90, 0.3);
+}

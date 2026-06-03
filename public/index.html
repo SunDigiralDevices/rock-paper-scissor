@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>เป่ายิ้งฉุบ Real-time</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Rock · Paper · Scissors</h1>
+
+<!-- ==================== LOBBY ==================== -->
+<div id="lobby">
+    <input type="text" id="usernameInput" placeholder="ชื่อผู้เล่น">
+    <input type="text" id="roomInput"     placeholder="รหัสห้อง">
+    <div class="btn-row">
+        <button class="btn-ghost" onclick="generateRoomCode()">สร้างห้อง</button>
+        <button class="btn-primary" onclick="joinRoom()">เข้าห้อง →</button>
+    </div>
+    <div id="generatedRoomArea" style="display:none">
+        <p>ส่งรหัสนี้ให้เพื่อน</p>
+        <div id="generatedRoomCode">------</div>
+    </div>
+</div>
+
+<!-- ==================== GAME ROOM ==================== -->
+<div id="gameRoom" style="display:none">
+
+    <div id="roomTitle">ห้อง: —</div>
+
+    <!-- Scoreboard -->
+    <div class="scoreboard">
+        <div class="player-score">
+            <div class="player-label">คุณ</div>
+            <div class="score-number" id="myScore">0</div>
+            <div class="dots" id="myDots"></div>
+        </div>
+        <div class="score-divider">vs</div>
+        <div class="player-score">
+            <div class="player-label">คู่แข่ง</div>
+            <div class="score-number" id="enemyScore">0</div>
+            <div class="dots" id="enemyDots"></div>
+        </div>
+    </div>
+
+    <!-- Timer -->
+    <div class="timer-wrap">
+        <div class="timer-ring" id="timerRing">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+                <circle class="bg"   cx="32" cy="32" r="27"/>
+                <circle class="prog" cx="32" cy="32" r="27" id="timerCircle"/>
+            </svg>
+            <div class="timer-num" id="timerNum">10</div>
+        </div>
+        <div class="timer-label">วินาที</div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div id="actionButtons" style="display:none">
+        <button class="choice-btn" onclick="sendChoice('rock')">
+            ✊ <span class="label">rock</span>
+        </button>
+        <button class="choice-btn" onclick="sendChoice('scissors')">
+            ✌️ <span class="label">paper</span>
+        </button>
+        <button class="choice-btn" onclick="sendChoice('paper')">
+            ✋ <span class="label">scissors</span>
+        </button>
+    </div>
+
+    <div id="status">รอผู้เล่นอีกคน...</div>
+    <div id="roundResultText"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
